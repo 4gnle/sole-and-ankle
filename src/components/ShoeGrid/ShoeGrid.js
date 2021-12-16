@@ -8,12 +8,24 @@ const ShoeGrid = () => {
   return (
     <Wrapper>
       {SHOES.map((shoe) => (
-        <ShoeCard key={shoe.slug} {...shoe} />
+        <OtherWrap key={shoe.slug}>
+          <ShoeCard  {...shoe} />
+        </OtherWrap>
       ))}
     </Wrapper>
   );
 };
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  display: flex;
+  gap: 36px;
+  flex-wrap: wrap;
+
+`;
+
+const OtherWrap = styled.div`
+  min-width: 340px;
+  flex: 1;
+`;
 
 export default ShoeGrid;
