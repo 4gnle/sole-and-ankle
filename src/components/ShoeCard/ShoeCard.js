@@ -42,7 +42,10 @@ const ShoeCard = ({
         <Spacer size={12} />
         <Row>
           <Name>{name}</Name>
-          <Price>{formatPrice(price)}</Price>
+          <Price style={{
+            '--pricecolor': variant ===
+            'on-sale' ? COLORS.gray[700] : undefined,
+            '--pricestrike': variant === 'on-sale' ? 'line-through' : undefined}}>{formatPrice(price)}</Price>
         </Row>
         <Row>
           <ColorInfo>{pluralize('Color', numOfColors)}</ColorInfo>
@@ -67,14 +70,11 @@ const Wrapper = styled.article`
 `;
 
 const ImageWrapper = styled.div`
-  object-position:50% 50%;
-  object-fit:cover;
-  border-radius: 16px 16px 4px 4px;
+  position: relative;
 `;
 
 const Image = styled.img`
   width: 100%;
-
 `;
 
 const Row = styled.div`
@@ -90,6 +90,8 @@ const Name = styled.h3`
 `;
 
 const Price = styled.span`
+  color: var(--pricecolor);
+  text-decoration: var(--pricestrike);
 `;
 
 const ColorInfo = styled.p`
@@ -102,24 +104,24 @@ const SalePrice = styled.span`
   color: ${COLORS.primary};
 `;
 
-const Flag = styled.span`
-  display: absolute;
-  top: 0;
-  right: 0;
+const Flag = styled.div`
+  position: absolute;
+  top: 12px;
+  right: -4px;
   height: 32px;
   color: white;
   font-size: 14px;
-  border-radius: 2px;
+  border-radius: 4px;
   padding: 0 10px;
   line-height: 32px;
 `;
 
 const NewFlag = styled(Flag)`
-  background-color: ${COLORS.primary};
+  background-color: ${COLORS.secondary};
 `;
 
 const SaleFlag = styled(Flag)`
-  background-color: ${COLORS.secondary};
+  background-color: ${COLORS.primary};
 `;
 
 export default ShoeCard;
